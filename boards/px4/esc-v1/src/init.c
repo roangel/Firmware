@@ -69,7 +69,7 @@
 #include <drivers/drv_board_led.h>
 
 #include <systemlib/cpuload.h>
-#include <parameters/param.h>
+#include <px4_init.h>
 
 #if defined(CONFIG_HAVE_CXX) && defined(CONFIG_HAVE_CXXINITIALIZE)
 #endif
@@ -170,10 +170,7 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 #  error platform is dependent on c++ both CONFIG_HAVE_CXX and CONFIG_HAVE_CXXINITIALIZE must be defined.
 #endif
 
-	/* configure the high-resolution time/callout interface */
-	hrt_init();
-
-	param_init();
+	px4_platform_init();
 
 	/* set up the serial DMA polling */
 	static struct hrt_call serial_dma_call;

@@ -5,6 +5,7 @@
 
 uorb start
 
+
 param load
 param set SYS_RESTART_TYPE 0
 

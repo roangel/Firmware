@@ -292,10 +292,7 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 #  error platform is dependent on c++ both CONFIG_HAVE_CXX and CONFIG_HAVE_CXXINITIALIZE must be defined.
 #endif
 
-	param_init();
-
-	/* configure the high-resolution time/callout interface */
-	hrt_init();
+	px4_platform_init();
 
 	/* configure the DMA allocator */
 

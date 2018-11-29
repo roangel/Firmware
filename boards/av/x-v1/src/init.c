@@ -79,7 +79,7 @@
 #include <perf/perf_counter.h>
 #include <systemlib/err.h>
 
-#include <parameters/param.h>
+#include <px4_init.h>
 #include <px4_i2c.h>
 
 #include "up_internal.h"
@@ -212,10 +212,7 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 	/* run C++ ctors before we go any further */
 	up_cxxinitialize();
 
-	/* configure the high-resolution time/callout interface */
-	hrt_init();
-
-	param_init();
+	px4_platform_init();
 
 	/* configure the DMA allocator */
 

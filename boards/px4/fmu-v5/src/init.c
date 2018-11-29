@@ -79,7 +79,7 @@
 #include <perf/perf_counter.h>
 #include <systemlib/err.h>
 
-#include <parameters/param.h>
+#include <px4_init.h>
 
 #include "up_internal.h"
 /****************************************************************************
@@ -287,9 +287,6 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 #  error platform is dependent on c++ both CONFIG_HAVE_CXX and CONFIG_HAVE_CXXINITIALIZE must be defined.
 #endif
 
-	/* configure the high-resolution time/callout interface */
-	hrt_init();
-
 	if (OK == board_determine_hw_info()) {
 		PX4_INFO("Rev 0x%1x : Ver 0x%1x %s", board_get_hw_revision(), board_get_hw_version(), board_get_hw_type_name());
 
@@ -297,7 +294,7 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 		PX4_ERR("Failed to read HW revision and version");
 	}
 
-	param_init();
+	px4_platform_init();
 
 	/* configure the DMA allocator */
 

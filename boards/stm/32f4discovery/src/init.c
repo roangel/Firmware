@@ -72,7 +72,7 @@
 
 #include <systemlib/cpuload.h>
 #include <perf/perf_counter.h>
-#include <parameters/param.h>
+#include <px4_init.h>
 
 /****************************************************************************
  * Pre-Processor Definitions
@@ -163,10 +163,7 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 #  error platform is dependent on c++ both CONFIG_HAVE_CXX and CONFIG_HAVE_CXXINITIALIZE must be defined.
 #endif
 
-	/* configure the high-resolution time/callout interface */
-	hrt_init();
-
-	param_init();
+	px4_platform_init();
 
 	/* configure CPU load estimation */
 #ifdef CONFIG_SCHED_INSTRUMENTATION

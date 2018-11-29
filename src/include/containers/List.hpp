@@ -64,6 +64,32 @@ public:
 		_head = newNode;
 	}
 
+	bool remove(T removeNode)
+	{
+		// base case
+		if (removeNode == _head) {
+			_head = nullptr;
+			return true;
+		}
+
+		for (T node = _head; node != nullptr; node = node->getSibling()) {
+			// is sibling the node to remove?
+			if (node->getSibling() == removeNode) {
+				// replace sibling
+				if (node->getSibling() != nullptr) {
+					node->setSibling(node->getSibling()->getSibling());
+
+				} else {
+					node->setSibling(nullptr);
+				}
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	const T getHead() const { return _head; }
 
 protected:

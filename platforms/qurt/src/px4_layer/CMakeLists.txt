@@ -44,6 +44,7 @@ set(QURT_LAYER_SRCS
 	qurt_stubs.c
 	main.cpp
 	shmem_qurt.cpp
+	px4_init.cpp
 	)
 
 if ("${QURT_ENABLE_STUBS}" STREQUAL "1")
@@ -57,5 +58,5 @@ add_library(px4_layer
 	${QURT_LAYER_SRCS}
 	${CONFIG_SRC}
 )
-target_link_libraries(px4_layer PRIVATE work_queue)
+target_link_libraries(px4_layer PRIVATE work_queue px4_work_queue)
 add_dependencies(px4_layer uorb_msgs) # dataman requires mission
