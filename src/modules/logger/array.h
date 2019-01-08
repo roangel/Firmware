@@ -47,9 +47,7 @@ class Array
 	typedef const TYPE *const_iterator;
 
 public:
-	Array()
-		: _size(0), _overflow(false)
-	{}
+	Array() = default;
 
 	bool push_back(const TYPE &x)
 	{
@@ -75,70 +73,28 @@ public:
 		}
 	}
 
-	reference operator[](size_t n)
-	{
-		return _items[n];
-	}
+	reference operator[](size_t n) { return _items[n]; }
 
-	const_reference operator[](size_t n) const
-	{
-		return _items[n];
-	}
+	const_reference operator[](size_t n) const { return _items[n]; }
 
-	reference at(size_t n)
-	{
-		return _items[n];
-	}
+	reference at(size_t n) { return _items[n]; }
 
-	const_reference at(size_t n) const
-	{
-		return _items[n];
-	}
+	const_reference at(size_t n) const { return _items[n]; }
 
-	size_t size() const
-	{
-		return _size;
-	}
+	size_t size() const { return _size; }
+	size_t max_size() const { return N; }
+	size_t capacity() const { return N; }
 
-	size_t max_size() const
-	{
-		return N;
-	}
+	bool empty() const { return _size == 0; }
+	bool is_overflowed() const { return _overflow; }
 
-	size_t capacity() const
-	{
-		return N;
-	}
+	iterator begin() { return &_items[0]; }
 
-	bool empty() const
-	{
-		return _size == 0;
-	}
+	iterator end() { return &_items[_size]; }
 
-	bool is_overflowed()
-	{
-		return _overflow;
-	}
+	const_iterator begin() const { return &_items[0]; }
 
-	iterator begin()
-	{
-		return &_items[0];
-	}
-
-	iterator end()
-	{
-		return &_items[_size];
-	}
-
-	const_iterator begin() const
-	{
-		return &_items[0];
-	}
-
-	const_iterator end() const
-	{
-		return &_items[_size];
-	}
+	const_iterator end() const { return &_items[_size]; }
 
 	void erase(iterator item)
 	{
@@ -153,8 +109,8 @@ public:
 
 private:
 	TYPE        _items[N];
-	size_t      _size;
-	bool        _overflow;
+	size_t      _size{0};
+	bool        _overflow{false};
 };
 
 }
