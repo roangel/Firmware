@@ -116,6 +116,7 @@ MavlinkReceiver::MavlinkReceiver(Mavlink *parent) :
 	_mavlink(parent),
 	_mission_manager(parent),
 	_parameters_manager(parent),
+	_parameters2_manager(parent),
 	_mavlink_ftp(parent),
 	_mavlink_log_handler(parent),
 	_mavlink_timesync(parent),
@@ -584,6 +585,10 @@ void MavlinkReceiver::handle_message_command_both(mavlink_message_t *msg, const 
 		if ((int)(cmd_mavlink.param2 + 0.5f) == 1) {
 			send_storage_information(cmd_mavlink.param1 + 0.5f);
 		}
+
+	} else if (cmd_mavlink.command == MAV_CMD_REQUEST_PACKED_PARAMS) {
+
+		_parameters2_manager.send_all();
 
 	} else {
 
@@ -2721,6 +2726,8 @@ MavlinkReceiver::receive_thread(void *arg)
 						/* handle packet with parameter component */
 						_parameters_manager.handle_message(&msg);
 
+						//_parameters2_manager.handle_message(&msg);
+
 						if (_mavlink->ftp_enabled()) {
 							/* handle packet with ftp component */
 							_mavlink_ftp.handle_message(&msg);
@@ -2750,7 +2757,8 @@ MavlinkReceiver::receive_thread(void *arg)
 			_mission_manager.check_active_mission();
 			_mission_manager.send(t);
 
-			_parameters_manager.send(t);
+			//_parameters_manager.send(t);
+			_parameters2_manager.send(t);
 
 			if (_mavlink->ftp_enabled()) {
 				_mavlink_ftp.send(t);

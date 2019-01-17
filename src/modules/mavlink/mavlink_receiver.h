@@ -87,6 +87,7 @@
 #include "mavlink_log_handler.h"
 #include "mavlink_mission.h"
 #include "mavlink_parameters.h"
+#include "mavlink_parameters2.h"
 #include "mavlink_timesync.h"
 
 class Mavlink;
@@ -199,6 +200,7 @@ private:
 
 	MavlinkMissionManager		_mission_manager;
 	MavlinkParametersManager	_parameters_manager;
+	MavlinkParameters2Manager	_parameters2_manager;
 	MavlinkFTP			_mavlink_ftp;
 	MavlinkLogHandler		_mavlink_log_handler;
 	MavlinkTimesync		_mavlink_timesync;
