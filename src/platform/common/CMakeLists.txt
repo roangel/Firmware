@@ -39,7 +39,7 @@ if (NOT "${PX4_PLATFORM}" MATCHES "qurt" AND NOT "${PX4_BOARD}" MATCHES "io-v2")
 		)
 endif()
 
-px4_add_library(platforms__common
+px4_add_library(px4_platform
 	module.cpp
 	px4_getopt.c
 	px4_cli.cpp

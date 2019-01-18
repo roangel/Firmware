@@ -39,5 +39,4 @@ px4_add_module(
     SRCS
         motor_ramp.cpp
     DEPENDS
-        platforms__common
     )
