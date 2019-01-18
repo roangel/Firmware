@@ -144,7 +144,7 @@ if (NOT "${PX4_BOARD}" MATCHES "px4_io")
 		)
 
 	if ("${CONFIG_SHMEM}" STREQUAL "1")
-		target_link_libraries(parameters PRIVATE px4_layer)
+		target_link_libraries(parameters PRIVATE px4_os_layer)
 	endif()
 
 	target_link_libraries(parameters PRIVATE perf tinybson)

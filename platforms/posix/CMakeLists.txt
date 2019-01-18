@@ -41,7 +41,7 @@ if (("${PX4_BOARD}" MATCHES "atlflight_eagle") OR ("${PX4_BOARD}" MATCHES "atlfl
 			apps.cpp
 		LINK_LIBS
 			-Wl,--start-group
-				px4_layer
+				px4_os_layer
 				parameters
 				${module_libraries}
 				${df_driver_libs}

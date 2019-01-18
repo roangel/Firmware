@@ -44,7 +44,7 @@ if("${CONFIG_SHMEM}" STREQUAL "1")
 	set(EXTRA_DEPENDS generate_px4muorb_stubs)
 endif()
 
-add_library(px4_layer
+add_library(px4_os_layer
 	px4_posix_impl.cpp
 	px4_posix_tasks.cpp
 	px4_sem.cpp
@@ -52,16 +52,16 @@ add_library(px4_layer
 	drv_hrt.cpp
 	${SHMEM_SRCS}
 )
-target_compile_definitions(px4_layer PRIVATE MODULE_NAME="px4")
-target_link_libraries(px4_layer PRIVATE work_queue)
-target_link_libraries(px4_layer PRIVATE px4_daemon)
+target_compile_definitions(px4_os_layer PRIVATE MODULE_NAME="px4")
+target_link_libraries(px4_os_layer PRIVATE work_queue)
+target_link_libraries(px4_os_layer PRIVATE px4_daemon)
 
 if(ENABLE_LOCKSTEP_SCHEDULER)
-	target_link_libraries(px4_layer PRIVATE lockstep_scheduler)
+	target_link_libraries(px4_os_layer PRIVATE lockstep_scheduler)
 	include_directories(${PX4_SOURCE_DIR}/platforms/posix/src/lockstep_scheduler/include)
 endif()
 
 
 if (EXTRA_DEPENDS)
-	add_dependencies(px4_layer ${EXTRA_DEPENDS})
+	add_dependencies(px4_os_layer ${EXTRA_DEPENDS})
 endif()
