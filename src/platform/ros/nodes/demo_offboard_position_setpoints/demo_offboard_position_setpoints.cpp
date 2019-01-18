@@ -41,7 +41,7 @@
 
 #include "demo_offboard_position_setpoints.h"
 
-#include <platforms/px4_middleware.h>
+#include <platform/px4_middleware.h>
 #include <geometry_msgs/PoseStamped.h>
 
 DemoOffboardPositionSetpoints::DemoOffboardPositionSetpoints() :

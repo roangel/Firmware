@@ -41,7 +41,7 @@
 
 #include "demo_offboard_attitude_setpoints.h"
 
-#include <platforms/px4_middleware.h>
+#include <platform/px4_middleware.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <std_msgs/Float64.h>
 #include <math.h>
